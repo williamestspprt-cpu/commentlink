@@ -91,8 +91,7 @@ function generateLink() {
   const post = encodeURIComponent(postInput);
   const comment = encodeURIComponent(commentInput);
 
-  // ✅ FIXED: relative link (works everywhere)
-  const link = `view.html?post=${post}&comment=${comment}`;
+  const link = `https://your-site.vercel.app/view.html?post=${post}&comment=${comment}`;
 
   document.getElementById("result").innerHTML = `
     <p>Share this link:</p>
