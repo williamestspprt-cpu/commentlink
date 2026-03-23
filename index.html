@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CommentLink Generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial;
+      background: #0f0f0f;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .box {
+      background: #1c1c1c;
+      padding: 20px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 350px;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    input, textarea {
+      width: 100%;
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      font-size: 14px;
+    }
+
+    textarea {
+      height: 100px;
+      resize: none;
+    }
+
+    button {
+      margin-top: 12px;
+      width: 100%;
+      padding: 12px;
+      background: #ff2e63;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .result {
+      margin-top: 12px;
+      font-size: 12px;
+      word-break: break-all;
+    }
+
+    a {
+      color: #08d9d6;
+    }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <h2>Generate Comment Link</h2>
+
+  <input id="postLink" placeholder="Paste Instagram post link">
+  <textarea id="comment" placeholder="Write your comment"></textarea>
+
+  <button onclick="generateLink()">Generate Link</button>
+
+  <div class="result" id="result"></div>
+</div>
+
+<script>
+function generateLink() {
+  const postInput = document.getElementById("postLink").value.trim();
+  const commentInput = document.getElementById("comment").value.trim();
+
+  if (!postInput || !commentInput) {
+    alert("Please fill both fields");
+    return;
+  }
+
+  const post = encodeURIComponent(postInput);
+  const comment = encodeURIComponent(commentInput);
+
+  // ✅ FIXED: relative link (works everywhere)
+  const link = `view.html?post=${post}&comment=${comment}`;
+
+  document.getElementById("result").innerHTML = `
+    <p>Share this link:</p>
+    <a href="${link}" target="_blank">${link}</a>
+  `;
+}
+</script>
+
+</body>
+</html>
